@@ -4,6 +4,7 @@ import NetworksList from "./NetworksList";
 export default function NetworksTokens({store, setStore, networks}: any) : JSX.Element {
     return (
         <>
+            {/* making changes */}
             <FormControl>
                 <FormLabel>Merchant Address</FormLabel>
                 <Input value={store.merchant || ''} onInput={(e:any) => {
