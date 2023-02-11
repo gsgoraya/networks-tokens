@@ -1,8 +1,8 @@
-import { VStack, Avatar, Text, Button, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure } from "@chakra-ui/react";
+import { VStack, Avatar, Text, Button, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure, HStack } from "@chakra-ui/react";
 import { useCallback, useEffect, useState } from "react";
 import TokenForm from "./TokenForm";
 
-export default function Token ({token, index, network, setStore, isDefaultToken}: any) : JSX.Element {
+export default function Token ({token, index, network, setStore, isDefaultToken, children}: any) : JSX.Element {
     
     const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -32,8 +32,8 @@ export default function Token ({token, index, network, setStore, isDefaultToken}
             }
 
         } else {
-            console.log('saving token', index);
-            setStore((prev) => {
+            
+            setStore((prev : any) => {
                 return {
                     ...prev,
                     chains: {
@@ -63,7 +63,10 @@ export default function Token ({token, index, network, setStore, isDefaultToken}
         <VStack>
             <Avatar></Avatar>
             <Text>{token.symbol}</Text>
-            <Button onClick={openForEditing}>Edit</Button>
+            <HStack>
+                {children}
+                <Button onClick={openForEditing} size='sm'>Edit</Button>
+            </HStack>
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>

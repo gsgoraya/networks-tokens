@@ -1,4 +1,4 @@
-import { Box, Button, FormControl, FormHelperText, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Spinner, useDisclosure, VStack } from "@chakra-ui/react";
+import { Box, Button, FormControl, Text, FormLabel, HStack, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Spinner, useDisclosure, VStack } from "@chakra-ui/react";
 
 import {  useCallback, useState } from "react";
 
@@ -20,9 +20,11 @@ export default function AddToken({addToken, network}: any): JSX.Element {
     }, [token]);
     return (
         <>
-        <Button onClick={onOpen}>
+        
+        <Button onClick={onOpen} colorScheme='blue'>
             Add Token
         </Button>
+        
         <Modal isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
             <ModalContent>
