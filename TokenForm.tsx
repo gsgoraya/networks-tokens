@@ -12,7 +12,7 @@ export default function TokenForm({token, setToken, network, isDefaultToken}: an
         const target = e.target as HTMLInputElement;
         const address = target.value;
 
-        setToken( (prev) => ({...prev, address}));
+        setToken( (prev: any) => ({...prev, address}));
 
         if (address.length === 42 && ethers.utils.isAddress(address)) {
             setWorking(true);
@@ -21,7 +21,7 @@ export default function TokenForm({token, setToken, network, isDefaultToken}: an
             const contract = new ethers.Contract(address, erc20abi, provider);
 
             const [decimals, symbol] = await Promise.all([contract.decimals(), contract.symbol()]);
-            setToken( (prev) => ({...prev, decimals: parseInt(decimals), symbol}));
+            setToken( (prev: any) => ({...prev, decimals: parseInt(decimals), symbol}));
             setWorking(false);
         }
     }, []);
@@ -43,14 +43,14 @@ export default function TokenForm({token, setToken, network, isDefaultToken}: an
                 <Input type="text"
                     isDisabled={isDefaultToken}
                     value={token['symbol'] || ''}
-                    onInput={(e) => setToken( (prev) => ({...prev, symbol: e.target['value']}))} />
+                    onInput={(e: any) => setToken( (prev: any) => ({...prev, symbol: e.target['value']}))} />
             </FormControl>
             <FormControl>
                 <FormLabel>Token Decimals</FormLabel>
                 <Input type="number"
                     isDisabled={isDefaultToken}
                     value={token['decimals'] || ''}
-                    onInput={(e) => setToken( (prev) => ({...prev, decimals: parseInt(e.target['value'])}))} />
+                    onInput={(e: any) => setToken( (prev: any) => ({...prev, decimals: parseInt(e.target['value'])}))} />
             </FormControl>
 
             { network.isTestnet && <FormControl>
@@ -58,7 +58,7 @@ export default function TokenForm({token, setToken, network, isDefaultToken}: an
                 <FormHelperText>Since, this is token is of a test network. You need to provide your own price as the value of this token</FormHelperText>
                 <Input type="number"
                     value={token['mockValue'] || ''}
-                    onInput={(e) => setToken( (prev) => ({...prev, mockValue: e.target['value']}))} />
+                    onInput={(e: any) => setToken( (prev: any) => ({...prev, mockValue: e.target['value']}))} />
             </FormControl> }
             
         </VStack>     
